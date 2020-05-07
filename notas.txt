@@ -1,0 +1,19 @@
+// para empezar un proyecto de node js
+escribir en la consola que se abrio dentro de la carpeta
+deseada 
+
+npm init
+
+
+// Express es un Framwework de NodeJS
+facilita la comunicacion cliente-servidor con HTTP
+
+// Para instalar Express:
+
+npm install express --save
+
+// con --save se guarda una linea en el package json que
+colocara las dependencias 
+
+// La carpeta node_modules incluyen todas las librerias que se han instalado
+son varias por que express tiene dependencias de otras librerias
