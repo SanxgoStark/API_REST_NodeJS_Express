@@ -98,3 +98,68 @@
     * se ṕuede mostrar en el navegador el mensaje que se ha configurado en ese metodo como respuesta
     * que es {"message":"Hola Mundo"} son en el navegador poner localhost:3001/hola
     */
+
+    // video 5 (Que metodos HTTP y Codigos de respuesta utilizar en tu API REST)
+
+    /**
+     * En este video se aprendera
+     * que tipo de codigo se pueden mandar al cliente,
+     * si ha habido error, si la peticion ha sido correcta y metodos HTTP
+     * 
+     * HTTP es un protocolo de comunicacion que permiten las tranferencias de
+     * informacion en la World Wide Web
+     * 
+     * HTTP es un protocolo sin estado, es decir, no guarda ninguna información
+     * sobre conexiones anteriores. El desarrollo de aplicaciones web necesita
+     * frecuentemente mantener estado. Para esto se usan las cookies,
+     * que es información que un servidor puede almacenar en el sistema cliente.
+     * Esto le permite a las aplicaciones web instituir la noción de sesión,
+     * y también permite rastrear usuarios ya que las cookies pueden guardarse en
+     * el cliente por tiempo indeterminado.
+     * 
+     * Para que una API REST sea ful se utilizan los metodos de peticion HTTP:
+     *  - GET
+     *  - POST
+     *  - PUT
+     *  - DELETE 
+     * 
+     *  GET: El método GET solicita una representación del recurso especificado.
+     *  Las solicitudes que usan GET solo deben recuperar datos y no deben tener
+     *  ningún otro efecto. (Esto también es cierto para algunos otros métodos HTTP.)
+     * 
+     *  POST: RFC 2616. Envía los datos para que sean procesados por el recurso identificado.
+     *  Los datos se incluirán en el cuerpo de la petición. Esto puede resultar en la creación
+     *  de un nuevo recurso o de las actualizaciones de los recursos existentes o ambas cosas.
+     * 
+     *  PUT: ( RFC 2616 ) Sube, carga o realiza un upload de un recurso especificado (archivo
+     *  o fichero) y es un camino más eficiente ya que POST utiliza un mensaje multiparte y el
+     *  mensaje es decodificado por el servidor. En contraste, el método PUT permite escribir
+     *  un archivo en una conexión socket establecida con el servidor. La desventaja del método
+     *  PUT es que los servidores de alojamiento compartido no lo tienen habilitado.
+     *  Ejemplo: PUT /path/filename.html HTTP/1.1
+     * 
+     *  DELETE: RFC 2616. Borra el recurso especificado.
+     * 
+     * Con esto la API REST admitiria LECTURA, ESCRITURA, ACTUALIZACION Y BORRADO
+     * 
+     * => CODIGOS DE RESPUESTA
+     * 
+     *      SERVIDOR ----a----> CLIENTE
+     * 
+     * Para informarle como ha sido la peticion
+     * 
+     * El código de respuesta o retorno es un número que indica que ha pasado con la petición. 
+     * El resto del contenido de la respuesta dependerá del valor de este código. El sistema 
+     * es flexible y de hecho la lista de códigos ha ido aumentando para así adaptarse a los 
+     * cambios e identificar nuevas situaciones. Cada código tiene un significado concreto. 
+     * Sin embargo el número de los códigos están elegidos de tal forma que según si pertenece 
+     * a una centena u otra se pueda identificar el tipo de respuesta que ha dado el servidor:
+     * 
+     * Códigos con formato 1xx: Respuestas informativas. Indica que la petición ha sido recibida y se está procesando.
+     * Códigos con formato 2xx: Respuestas correctas. Indica que la petición ha sido procesada correctamente.
+     * Códigos con formato 3xx: Respuestas de redirección. Indica que el cliente necesita realizar más acciones para finalizar la petición.
+     * Códigos con formato 4xx: Errores causados por el cliente. Indica que ha habido un error en el procesado de la petición a causa de que el cliente ha hecho algo mal.
+     * Códigos con formato 5xx: Errores causados por el servidor. Indica que ha habido un error en el procesado de la petición a causa de un fallo en el servidor.
+     * 
+     * https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto
+     */
