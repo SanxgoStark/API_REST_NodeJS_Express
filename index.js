@@ -29,22 +29,59 @@
  // Para poder admitir peticiones con cuerpo de mensaje en formato json
  app.use(bodyParser.json())
 
- // Peticion que se hace al API REST
+ // Creacion de peticion tipo GET para mostrar todos los productos
+ app.get('/api/product',(req,res) => {
+    res.send(200,{products:[]})
+ })
+
+ // Ruta GET para acceder a un unico recurso
+ app.get('/api/product/:productId', (req,res) => {
+
+ })
 
  /**
-  * entre parentisis va la url a la que queremos que escuche este metodo,
-  * (req,res) req = peticion y res = respuesta,
-  * res.send({ message: 'Hola mundo'} ----> mensaje de respuesta,
-  * /:name ----es el req ---peticion y en el mensaje se muestra
+  * Ruta de tipo POST para poder subir los productos
+  * misma ruta que get pero se accede de diferente forma
   * 
-  * al escribir en el navegador:
-  * localhost:3001/hola/Santiago
-  * como resultado en la pag web se mostrara el mensaje:
-  * "{"message":"Hola Santiago"}" 
+  * para acceder al cuerpo de la peticion gracias al mittleware de body-parse
+  * en req.body se tendra todo lo que se mande del cuerpo de la peticion
+  * 
+  * Como respuesta para el cliente:
+  * 
+  * codigo 200 :todo ha ido bien
+  * mensaje: El producto se ha recibido
+  * 
+  * Como probar una peticion de tipo post ? por que no se ṕuede
+  * escribir la url en el navegador directamente, para esto se usa postman aplicacion
+  * 
+  * con postma se envian una serie de atributos de un producto tales como:
+  * 
+  * [Object: null prototype] {
+  * name: 'Mackbook Pro',
+  * precio: '1200',
+  * photo: 'macbook.png',
+  * category: 'laptop '
+  * }
+  * 
+  * y estos se envian a la api para pobar el post, como resultado aroja "message": "El producto se ha recibido"
+  * esto indica que se ha realizado con exito el post
   */
 
- app.get('/hola/:name',(req,res) => {
-     res.send({ message: `Hola ${req.params.name}`})
+
+ app.post('/api/product',(req,res) => {
+    console.log(req.body)
+    res.status(200).send(200,{message: 'El producto se ha recibido'})
+ })
+
+ // Ruta para hacer las actualizaciones con put
+ // esto le indica en la peticion que quiero actualizar el productId este que mando como parametro
+ app.put('/api/product/productId', (req,res) => {
+
+ })
+
+ // Ruta de tipo delete para borrar un producto de la base de datos
+ app.delete('/api/product/:productId',(req,res) => {
+
  })
 
  // app escuchara en el puesrto 3000
@@ -97,6 +134,22 @@
     * para probar en navegador despues de haber colocado el metodo que escucha a una url
     * se ṕuede mostrar en el navegador el mensaje que se ha configurado en ese metodo como respuesta
     * que es {"message":"Hola Mundo"} son en el navegador poner localhost:3001/hola
+    * 
+    * // Peticion que se hace al API REST
+    * 
+    * entre parentisis va la url a la que queremos que escuche este metodo,
+    * (req,res) req = peticion y res = respuesta,
+    * res.send({ message: 'Hola mundo'} ----> mensaje de respuesta,
+    * /:name ----es el req ---peticion y en el mensaje se muestra
+    * 
+    * al escribir en el navegador:
+    * localhost:3001/hola/Santiago
+    * como resultado en la pag web se mostrara el mensaje:
+    * "{"message":"Hola Santiago"}" 
+    * 
+    *  app.get('/hola/:name',(req,res) => {
+    *   res.send({ message: `Hola ${req.params.name}`})
+    *  })
     */
 
     // video 5 (Que metodos HTTP y Codigos de respuesta utilizar en tu API REST)
@@ -163,3 +216,13 @@
      * 
      * https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto
      */
+
+     // Video 6 (Como usar POSTMAN para testear API REST)
+
+     /**
+      * Ejemplo de API REST para un ecomerce ficticio (una especie de Amazon una tienda online),
+      * al cliente la vamos a mostrar productos mediante nuestra base de datos, vamos a poder mostrarlos etc.
+      * 
+      * Con este video ya se puede acceder al cuerpo del mensaje y apartir de los
+      * satos que recibimos ya se puede crear un objeto, guardarlo etc 
+      */
