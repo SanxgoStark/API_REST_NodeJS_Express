@@ -40,12 +40,44 @@
  app.use(bodyParser.json())
 
  // Creacion de peticion tipo GET para mostrar todos los productos
+ /**
+  * {} en el find significa que busque todos los productos
+  * prodcuts ---> el array de todos los productos
+  * 
+  * Este metodo buscara todos los productos en la bas de datos
+  * 
+  * {product} array de productos
+  */
  app.get('/api/product',(req,res) => {
-    res.send(200,{products:[]})
+    Product.find({},(err,products) => {
+       if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+       if (!products) return res.status(404).send({message: `No existen productos`})
+
+       res.status(200).send({product: products})
+    }) 
+
+    
  })
 
  // Ruta GET para acceder a un unico recurso
+ /**
+  * Este metodo buscara en la base de datos UN producto con el id especificado
+  * 
+  * [objeto con la clavve producto]: [valor es una variable que se llama product]
+  * product: product
+  * 
+  * en el caso de obejtis que la clave y el valor sean los mismos en este caso product
+  * se puede usar product solo una ves
+  */
  app.get('/api/product/:productId', (req,res) => {
+    
+   let productId = req.params.productId
+   
+    Product.findById(productId, (err,product) => {
+       if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
+       if (!product) return res.status(404).send({message: `El producto no existe`})
+       res.status(200).send({product: product})
+    })
 
  })
 

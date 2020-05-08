@@ -180,6 +180,11 @@ sudo snap install postman
 
 // Video 8 (Como almacenar datos en MongoDB con HTTP POST en tu API)
 
- // Al enviar la peticion POST con los datos a la url como respuesta en postman se debera mostrar
- // un producto en formato json con los datos previamete ingresados en el body del POST pero 
- // agregando ya un id que fue el que agrega mongodb al guardar el producto
+ Al enviar la peticion POST con los datos a la url como respuesta en postman se debera mostrar
+ un producto en formato json con los datos previamete ingresados en el body del POST pero 
+ agregando ya un id que fue el que agrega mongodb al guardar el producto
+
+// Video 9 (Como devolver datos con GET desde un API REST)
+
+peticiones de tipoo GET se pueden usar en el navegador
+
