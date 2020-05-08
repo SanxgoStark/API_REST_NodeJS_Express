@@ -135,6 +135,8 @@
    * 
    * al guardarse en la base de datos mongodb le asigna un id unico y ese id
    * nos servira para hacer posteriores modificaciones sobre el producto
+   * 
+   * POST permite almacenar
    */
 
  app.post('/api/product',(req,res) => {
@@ -157,12 +159,41 @@
 
  // Ruta para hacer las actualizaciones con put
  // esto le indica en la peticion que quiero actualizar el productId este que mando como parametro
- app.put('/api/product/productId', (req,res) => {
+ /**
+  * metdo put para actualizancion (UPDATE)
+  * 
+  * let update es una variable que guarda el cuerpo de la peticion
+  */
+ app.put('/api/product/:productId', (req,res) => {
 
+   let productId = req.params.productId
+   let update = req.body
+
+   Product.findByIdAndUpdate(productId, update, (err, productUpdate) => {
+      if (err) res.status(500).send({message: `Error alactualizar el producto: ${err}`})
+
+      res.status(200).send({product: productUpdate})
+   })
  })
 
  // Ruta de tipo delete para borrar un producto de la base de datos
+ /**
+  * Product ---> modelo de mongoose
+  * product objeto recibido 
+  */
  app.delete('/api/product/:productId',(req,res) => {
+
+   let productId = req.params.productId
+
+   Product.findById(productId,(err,product) => {
+      if (err) res.status(500).send({message: `Error al borrar el producto: ${err}`})
+      
+      product.remove(err => {
+         if (err) res.status(500).send({message: `Error al borrar el producto: ${err}`})
+         res.status(200).send({message: `El producto ha sido eliminado`})
+      })
+   })
+
 
  })
 

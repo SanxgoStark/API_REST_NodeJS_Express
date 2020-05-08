@@ -188,3 +188,5 @@ sudo snap install postman
 
 peticiones de tipoo GET se pueden usar en el navegador
 
+// Video 10 (Como implentar DELETE y UPDATE de registros en tu API REST)
+
