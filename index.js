@@ -18,6 +18,9 @@
 
  const bodyParser = require('body-parser')
 
+ // importacion delibreria mongoose
+ const mongoose = require('mongoose')
+
  // Para crear servidor (variable app que llama a espress)
  const app = express()
 
@@ -84,20 +87,53 @@
 
  })
 
- // app escuchara en el puesrto 3000
+ // Metodo mongoose conect para conectar API REST con Mongo
 
  /**
-  * la palabra function asido sustituida por => (arrow)
-  * s
-  * app.use añade mittlewere
+  * localhost ---> host en el que nos encontramos
+  * si estamos en el puerto por defecto no habria
+  * falta de agregar el puerto pero aun asi se agrega y
+  * es 27017/[nombre base de datos]
+  * 
+  * (err,res) ----> callback
+  * err ---> error si lo hubiese
+  * res ---> respuesta
+  * 
+  * if(err) throw err ---> si hay error pues que lo lanze, esto lanza el error por de fecto que arroja nodemon
+  * si se desea modificar el mensaje al momento de lanzar ese error usar:
+  * 
+  * if(err) {
+  * return console.log(`Error al conectar a la base de datos:${err}`)
+  * }
+  * 
+  * y si no que muestre console.log('Conexion a la base de datos establecida....')
   */
 
- app.listen(port, () => {
+
+ /**
+  * app escuchara en el puesrto 3000
+  * 
+  * la palabra function asido sustituida por => (arrow)
+  * app.use añade mittlewere
+  */
+ 
+ // para ejecutar en terminal lo anterior escribir: node index.js
+
+ mongoose.connect('mongodb://localhost:27017/shop', (err,res) =>{
+
+   if(err) {
+      return console.log(`Error al conectar a la base de datos:${err}`)
+   }
+   console.log('Conexion a la base de datos establecida....')
+
+   app.listen(port, () => {
     
-    console.log(`API REST corriendo en http://localhost:${port}`)
+      console.log(`API REST corriendo en http://localhost:${port}`)
+   })
+
  })
 
- // para ejecutar en terminal lo anterior escribir: node index.js
+
 
  // Video #3
 
@@ -224,5 +260,19 @@
       * al cliente la vamos a mostrar productos mediante nuestra base de datos, vamos a poder mostrarlos etc.
       * 
       * Con este video ya se puede acceder al cuerpo del mensaje y apartir de los
-      * satos que recibimos ya se puede crear un objeto, guardarlo etc 
+      * datos que recibimos ya se puede crear un objeto, guardarlo etc 
       */
+
+      // Video 7 (Instalar MongoDB y utilizar Mongoose como ORM/ODM)
+
+      /**
+       * Se debera de instalar un driver o libreria para poder acceder a la base de datos desde la API
+       * REST, para instalar mongoose:
+       * 
+       * en terminal de la carpeta de api-rest : npm install -S mongoose
+       * 
+       * IMPORTANTE: primero se debe encender el servicio de mongo con [mongod] solo asi
+       * despues podremos encender el servidor del API REST con [npm start]
+       * 
+       * https://www.digitalocean.com/community/tutorials/como-instalar-mongodb-en-ubuntu-18-04-es
+       */
