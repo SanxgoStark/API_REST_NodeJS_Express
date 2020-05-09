@@ -190,3 +190,5 @@ peticiones de tipoo GET se pueden usar en el navegador
 
 // Video 10 (Como implentar DELETE y UPDATE de registros en tu API REST)
 
+// Video 11 (Como refactorizar el codigo Javascript de tu API REST)
+

@@ -1,5 +1,9 @@
 'use strict'
 
+/**
+ * Archivo para modelo
+ */
+
 const mongoose = require('mongoose')
 /**
  * comongoose un modelo para nuestra base de datos en concreto (producto)
