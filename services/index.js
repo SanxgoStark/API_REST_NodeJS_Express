@@ -6,7 +6,7 @@ const jwt = require('jwt-simple')
 const moment = require('moment')
 
 // importando secret
-const confif = require('../config')
+const config = require('../config')
 
 // hacer uso de libreria jwt para crear un token con el obejeto usuario
 /**

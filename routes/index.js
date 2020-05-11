@@ -127,7 +127,7 @@ const api = express.Router()
   * el usuario es este que tiene el payload y con el next() pas a la siguiente que es la function
   * 
   */
- api.get('/private',auth.isAuth, function(req,res) {
+ api.get('/private', auth.isAuth, function(req,res) {
    res.status(200).send({message: 'Tienes acceso'})
 
  })
