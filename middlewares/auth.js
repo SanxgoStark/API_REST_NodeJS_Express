@@ -1,10 +1,6 @@
 'use strict'
 
-const jwt = require('jwt')
-const moment = require('moment')
-
-// fichero de configuracion para poder verificar la clave secreta de tokens
-const config = require('../config')
+const services = require('../services')
 
 /**
  * 
@@ -29,19 +25,22 @@ const config = require('../config')
 function isAuth (req,res,next) {
     if(!req.headers.authorization) {
         return res.status(403).send({
-            message: 'Notienes autorizacion'  
+            message: 'No tienes autorizacion'  
         })
     }
     
     const token = req.headers.authorization.split(' ')[1]
-    const payload = jwt.decode(token,config.SECRET_TOKEN)
 
-    if (payload.exp < moment().unix()) {
-        return res.status(401).send({message: 'El Token ha expirado'})
-    }
-
-    req.user = payload.sub
-    next()
+    services.decodeToken(token)
+        .then(response => {
+            req.user = response
+            next()
+        })
+        .catch(response => {
+            res.status(response.status)
+        })
+    
 }
+
 
 module.exports = isAuth 
