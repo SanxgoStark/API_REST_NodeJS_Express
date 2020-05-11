@@ -128,7 +128,7 @@ const api = express.Router()
   * 
   */
  api.get('/private',auth.isAuth, function(req,res) {
-   res,status(200).send({message: 'Tienes acceso'})
+   res.status(200).send({message: 'Tienes acceso'})
 
  })
 

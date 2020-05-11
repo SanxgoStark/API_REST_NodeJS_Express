@@ -36,7 +36,7 @@ function isAuth (req,res,next) {
     const payload = jwt.decode(token,config.SECRET_TOKEN)
 
     if (payload.exp < moment().unix()) {
-        return res,status(401).send({message: 'El Token ha expirado'})
+        return res.status(401).send({message: 'El Token ha expirado'})
     }
 
     req.user = payload.sub
