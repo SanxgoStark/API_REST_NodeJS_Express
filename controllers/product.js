@@ -26,6 +26,8 @@ function getProduct (req,res) {
 
 }
 
+// Comentario de prueba
+
 function getProducts (req,res) {
 
     Product.find({},(err,products) => {

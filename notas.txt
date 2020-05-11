@@ -178,6 +178,8 @@ sudo snap install postman
        * https://www.digitalocean.com/community/tutorials/como-instalar-mongodb-en-ubuntu-18-04-es
        */
 
+       // Comentario de pruebas
+
 // Video 8 (Como almacenar datos en MongoDB con HTTP POST en tu API)
 
  Al enviar la peticion POST con los datos a la url como respuesta en postman se debera mostrar
@@ -192,3 +194,6 @@ peticiones de tipoo GET se pueden usar en el navegador
 
 // Video 11 (Como refactorizar el codigo Javascript de tu API REST)
 
+// Video 12 (Como crear un modelo "User" con Mongoose schemas)
+
+adicion de usuario para poder loggearse etc
