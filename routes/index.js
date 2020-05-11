@@ -14,6 +14,9 @@ const express = require('express')
 
 const productCtrl = require('../controllers/product')
 
+//
+const auth = require('../middlewares/auth')
+
 // Usando router de express para las rutas 
 const api = express.Router()
 
@@ -116,5 +119,17 @@ const api = express.Router()
   * product objeto recibido 
   */
  api.delete('/product/:productId', productCtrl.deleteProduct)
+
+ /**
+  * Se comprueba si existe autorizacion y si no existe mandara un mensaje de error
+  * y en el caso de que si exista tomara el token , lo decodificara, mirara en el payload 
+  * si no a caducado y en el caso de que no haya caducado entonces autoriza he indica que
+  * el usuario es este que tiene el payload y con el next() pas a la siguiente que es la function
+  * 
+  */
+ api.get('/private',auth.isAuth, function(req,res) {
+   res,status(200).send({message: 'Tienes acceso'})
+
+ })
 
  module.exports = api
