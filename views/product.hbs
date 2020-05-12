@@ -12,7 +12,7 @@ fetch('/api/product', {
 })
 .then(res => res.json())
 .then(data => {
-    data.products.map(product => {
+    data.product.map(product => {
         let text = document.createTextNode(product.name)
         let elem = document.createElement('li')
         elem.appendChild(text)
