@@ -1,0 +1,37 @@
+<form id = "login" method="post">
+    <input type="email" name="email" values="" placeholder="Tu email">
+    <br><br>
+    <input type="password" name="password" values="" placeholder="Tu contraseña">
+    <br><br>
+    <input type="submit" values="Login">
+
+</form>
+
+<!--<br><br> para salto de linea-->
+
+{{!--<input type="submit" values="Login">--}}
+
+{{!--formData que incluye los datos del formulario--}}
+
+{{!--const formData = new FormData(formLogin) ---> toma los inputs del form y crea un objeto para--}} 
+{{!--poder enviarlos--}}
+
+{{!--event.preventDefault() ---> para no recargar la pagina y se quede ahi--}}
+
+<script type="text/javascript">
+    const formLogin = document.querySelector('#login')
+    const formData = new FormData(formLogin)
+
+    formLogin.addEventListener('submit', event => {
+        event.preventDefault()
+        fetch('/api/signin', {
+            method: 'POST',
+            body: formData
+
+        })
+        .then(res => res.json())
+        .then(data => {
+            localStorage.setItem('token',data.token)
+        })
+    })
+</script>
