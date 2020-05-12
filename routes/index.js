@@ -14,6 +14,9 @@ const express = require('express')
 
 const productCtrl = require('../controllers/product')
 
+//importacion los controladores de usuario
+const userCtrl = require('../controllers/user')
+
 //
 const auth = require('../middlewares/auth')
 
@@ -29,8 +32,10 @@ const api = express.Router()
   * Este metodo buscara todos los productos en la bas de datos
   * 
   * {product} array de productos
+  * 
+  * auth como middleware indica que solo pueden acceder los que sena usuarios registrados
   */
- api.get('/product', productCtrl.getProducts)
+ api.get('/product',auth, productCtrl.getProducts)
 
  // Ruta GET para acceder a un unico recurso
  /**
@@ -102,7 +107,7 @@ const api = express.Router()
    * POST permite almacenar
    */
 
- api.post('/product', productCtrl.saveProduct)
+ api.post('/product',auth, productCtrl.saveProduct)
 
  // Ruta para hacer las actualizaciones con put
  // esto le indica en la peticion que quiero actualizar el productId este que mando como parametro
@@ -111,14 +116,20 @@ const api = express.Router()
   * 
   * let update es una variable que guarda el cuerpo de la peticion
   */
- api.put('/product/:productId', productCtrl.updateProduct)
+ api.put('/product/:productId',auth, productCtrl.updateProduct)
 
  // Ruta de tipo delete para borrar un producto de la base de datos
  /**
   * Product ---> modelo de mongoose
   * product objeto recibido 
   */
- api.delete('/product/:productId', productCtrl.deleteProduct)
+ api.delete('/product/:productId',auth, productCtrl.deleteProduct)
+
+// ruta para registro userCtrl.signUp [controlador].[funcion]
+api.post('/signup',userCtrl.signUp)
+
+// ruta de tipo login
+api.post('/signin',userCtrl.signIn)
 
  /**
   * Se comprueba si existe autorizacion y si no existe mandara un mensaje de error
@@ -126,6 +137,7 @@ const api = express.Router()
   * si no a caducado y en el caso de que no haya caducado entonces autoriza he indica que
   * el usuario es este que tiene el payload y con el next() pas a la siguiente que es la function
   * 
+  * ruta privada que tiene el middleware de auth
   */
  api.get('/private', auth, (req,res) => {
    res.status(200).send({message: 'Tienes acceso'})

@@ -5,7 +5,6 @@
  * y autentificacion de usuarios en nuestro API-REST
  */
 
- const mongoose = require('mongoose')
 
  // Importando el modelo usuario
  const User = require('../models/user')
@@ -39,7 +38,7 @@
     user.save((err) => {
         if(err) res.status(500).send({message: `Error al crear el usuario: ${err}`})
 
-        return res.status(200).send({token: service.createToken(user)})
+        return res.status(201).send({token: service.createToken(user)})
     })
  }
 
@@ -56,7 +55,7 @@
         if (err) return res.status(500).send({message: err})
         if(!user) return res.status(404).send({message: 'No existe el usuario'})
 
-        req.user
+        req.user = user
         res.status(200).send({
             message: 'Te has logueadi correctamente',
             token: service.createToken(user)
